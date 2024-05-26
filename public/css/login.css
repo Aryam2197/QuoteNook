@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0E0F2A;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; /* Adjusted height for better visibility */
+    background-image: url(../images/BG.png);
+    background-size: cover; /* Ensure the background image covers the entire viewport */
+    background-position: 50% 20%; /* Center the background image horizontally and shift it vertically */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+}
+
+.container {
+    text-align: center;
+    align-items: center;
+    padding: 20px; /* Added padding for spacing */
+    margin: auto;
+}
+
+.title {
+    margin-bottom: 15px;
+    font-size: 40px;
+    color: #fff;
+    color:wheat;
+}
+
+.card {
+    background-color: #222239;
+    width: 100%; /* Adjusted width for responsiveness */
+    max-width: 400px; /* Added max-width to maintain readability */
+    height: auto;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 20px; /* Added padding for spacing */
+}
+
+.card input {
+    width: 90%; /* Adjusted input width to fill the card */
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: large;
+    background-color: #404156;
+    color: white;
+}
+
+.card input::placeholder{
+    color:rgb(255, 243, 221,0.2);
+}
+
+.btn {
+    margin-top: 20px; /* Adjusted margin for spacing */
+    height: 50px;
+    width: 100%; /* Adjusted button width to fill the card */
+    border-radius: 50px;
+    font-size: 30px; /* Adjusted font size for better fit */
+    /* background-color: #9ea2fb; */
+    background-color: rgb(106, 114, 255);
+    color: rgb(255, 240, 212);
+    border: none;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-family: Arial, sans-serif; /* Example of using a system font */
+}
+
+.btn:hover{
+    background-color: rgb(86, 94, 225); /* Slightly darker shade of blue */
+    color: rgb(255, 233, 233);
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        max-width: 768px; /* Adjusted max-width for larger screens */
+    }
+}
+
+.signup-link {
+    color: #d1d4ff; /* Set link color */
+    text-decoration: none; /* Remove default underline */
+}
+
+.signup-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+p{
+    color:wheat;
+}
