@@ -1,15 +1,24 @@
-// server/db.js
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/quotenook', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose.connect('mongodb://127.0.0.1:27017/QouteNook')
+    .then(()=>{
+        console.log("CONNECTED!")
+    })
+    .catch(err =>{
+        console.log("CONNECTION FAILED!!")
+    });
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-    console.log('Connected to MongoDB');
+    const productSchema = new mongoose.Schema({
+        name : {
+                type:String,
+                required:true
+            },
+        price : {
+                type : Number,
+                min : [0,'Price must be possitive']
+        },
+        onSale : {
+                type : Boolean,
+                default : false
+        }
 });
-
-module.exports = mongoose;
