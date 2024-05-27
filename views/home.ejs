@@ -3,12 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>QuoteNooK</title>
+    <link rel="stylesheet" href="../css/home.css">
 </head>
 <body>
-    <h1>Welcome to Our Website</h1>
-    <form action="/logout" method="POST">
-        <button>sign out </button>
-    </form>       
+    <header>
+        <div class="header-container">
+            <h1 class="title">QuoteNooK</h1>
+            
+        </div>
+        
+        <form action="/logout" method="POST">
+            <div class="logout">
+                <button>Logout</button>
+            </div>
+        </form>   
+        
+        <h2 class="sub">Choose tag</h2>
+    </header>
+    <main>
+        <div class="card-container">
+            <div class="card" id="card1">Creativity</div>
+            <div class="card" id="card2">Life</div>
+            <div class="card" id="card3">Motivation</div>
+            <div class="card" id="card4">Spirituality</div>
+            <div class="card" id="card5">Wisdom</div>
+            <div class="card" id="card6">Nature</div>
+            <div class="card" id="card7">Education</div>
+            <div class="card" id="card8">Happiness</div>
+            <div class="card" id="card9">Wellness</div>
+            <div class="card" id="card10">Science</div>
+            
+        </div>
+    </main>
+    <footer>
+        <button class="send-mail">Send</button>
+    </footer>
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const cards = document.querySelectorAll(".card");
+    
+        cards.forEach(card => {
+            card.addEventListener("click", function() {
+                // Remove the 'selected' class from all cards
+                cards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.classList.remove("selected");
+                    }
+                });
+    
+                // Toggle the 'selected' class for the clicked card
+                card.classList.toggle("selected");
+            });
+        });
+    });
+    
+</script>
+
 </html>

@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative; /* Ensure proper positioning for absolute elements */
+    background-color: #18191E;
+}
+
+header {
+    background-color: #18191E;
+    color: #fff;
+    padding: 20px 0px 2px 0px;
+    position: relative; /* Ensure proper positioning for absolute elements */
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%; /* Optional: set max-width for the header */
+    margin: 0 auto; /* Optional: center the header */
+    position: relative; /* Ensure proper positioning for absolute elements */
+}
+
+.title {
+    margin: 0;
+    font-size: 3rem;
+    text-align: center; /* Center the title */
+    flex: 1; /* Take remaining space */
+    color: #f5deb3;
+}
+
+.logout {
+    position: absolute;
+    top: 25%; /* Align the top of the button with the vertical center of the header container */
+    right: 2%; /* Add some space from the right */
+    transform: translateY(-50%); /* Move the button up by half of its height to center it vertically */
+}
+
+
+
+.logout button {
+    background-color: #f06666;
+    color: #333;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color:#f5deb3;
+    font-weight: bold;
+}
+
+.logout button:hover{
+    background-color: #e85151;
+}
+
+.sub {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    text-align: center; /* Center the email */
+    color: #8b909dae;
+}
+
+main {
+    padding: 20px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -20px;
+    margin-bottom: -30px;
+}
+
+.card {
+    background-color: #272931;
+    border: 2px solid #424346;
+    color: #9a9da4;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 15px;
+    text-align: center;
+    font-size: 34px;
+    display: flex; /* Add display flex to the card */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    flex-basis: calc(50% - 10px);
+    min-width: 80px;
+    max-width: 200px;
+    aspect-ratio: 1;
+    user-select: none;
+    transition: 0.2s ease-out;
+}
+
+@media screen and (max-width: 576px) {
+    .card {
+        flex-basis: calc(50% - 10px); /* Each card takes up 50% width with reduced margin */
+        max-width: 200px; /* Reduced max-width */
+    }
+}
+
+
+
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.send-mail {
+    background-color: #515993;
+    color: #fffffff1;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 90px;
+}
+
+.send-mail:hover{
+    background-color: #5962a3;
+}
+
+.send-mail:active{
+    background-color: #626cba;
+}
+
+.card:hover {
+    background-color: #3b3f4b; /* Change background color on hover */
+    border-color: #e3fffc; /* Change border color on hover */
+    color: #fff; /* Change text color on hover */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.card.selected {
+    background-color: #4c505d; /* Change background color on select */
+    border-color: #c5e3e0; /* Change border color on select */
+    color: #fff; /* Change text color on select */
+}
