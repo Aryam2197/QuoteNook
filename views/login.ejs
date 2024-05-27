@@ -12,11 +12,20 @@
             <h1>QuoteNook</h1>
         </div>
         <div class="card">
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
+            <form action="/login" method="POST">
+                <input type="text" placeholder="Username" name="username" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit" class="btn">LOGIN</button>
+                <% if (messages && messages.length > 0) { %>
+                    <div style="color: white;">
+                        <% for (var i = 0; i < messages.length; i++) { %>
+                            <p><%= messages[i] %></p>
+                        <% } %>
+                    </div>
+                <% } %>
+            </form>
         </div>
-        <button class="btn">LOGIN</button>
-        <p>Not a member? <a href="signup.html" class="signup-link">Sign Up</a></p>
+        <p>Not a member? <a href="/register" class="signup-link">Sign Up</a></p>
     </div>
 </body>
 </html>
