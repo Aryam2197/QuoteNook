@@ -10,12 +10,11 @@
     <header>
         <div class="header-container">
             <h1 class="title">QuoteNooK</h1>
-            
         </div>
         
         <div class="email-title">
-            <h1 > <%= username %> </h1>
-            <h1> <%= email %></h1>
+            <h1><%= username %></h1>
+            <h1><%= email %></h1>
         </div>
         <form action="/logout" method="POST">
             <div class="logout">
@@ -27,41 +26,71 @@
     </header>
     <main>
         <div class="card-container">
-            <div class="card" id="card1">Creativity</div>
-            <div class="card" id="card2">Life</div>
-            <div class="card" id="card3">Motivation</div>
-            <div class="card" id="card4">Spirituality</div>
-            <div class="card" id="card5">Wisdom</div>
-            <div class="card" id="card6">Nature</div>
-            <div class="card" id="card7">Education</div>
-            <div class="card" id="card8">Happiness</div>
-            <div class="card" id="card9">Wellness</div>
-            <div class="card" id="card10">Science</div>
+            <div class="card" id="card1" data-tag="creativity">Creativity</div>
+            <div class="card" id="card2" data-tag="life">Life</div>
+            <div class="card" id="card3" data-tag="motivation">Motivation</div>
+            <div class="card" id="card4" data-tag="spirituality">Spirituality</div>
+            <div class="card" id="card5" data-tag="wisdom">Wisdom</div>
+            <div class="card" id="card6" data-tag="nature">Nature</div>
+            <div class="card" id="card7" data-tag="education">Education</div>
+            <div class="card" id="card8" data-tag="happiness">Happiness</div>
+            <div class="card" id="card9" data-tag="wellness">Wellness</div>
+            <div class="card" id="card10" data-tag="science">Science</div>
         </div>
     </main>
     <footer>
         <button class="send-mail">Send</button>
     </footer>
-</body>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const cards = document.querySelectorAll(".card");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll(".card");
+            const sendButton = document.querySelector(".send-mail");
 
-        cards.forEach(card => {
-            card.addEventListener("click", function() {
-                // Remove the 'selected' class from all cards
-                cards.forEach(otherCard => {
-                    if (otherCard !== card) {
-                        otherCard.classList.remove("selected");
-                    }
+            let selectedTag = null;
+
+            cards.forEach(card => {
+                card.addEventListener("click", function() {
+                    // Remove the 'selected' class from all cards
+                    cards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove("selected");
+                        }
+                    });
+
+                    // Toggle the 'selected' class for the clicked card
+                    card.classList.toggle("selected");
+                    
+                    // Set the selected tag
+                    selectedTag = card.classList.contains("selected") ? card.dataset.tag : null;
                 });
+            });
 
-                // Toggle the 'selected' class for the clicked card
-                card.classList.toggle("selected");
+            sendButton.addEventListener("click", function() {
+                if (selectedTag) {
+                    fetch('/send-quote', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ tag: selectedTag })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Quote sent to your email!');
+                        } else {
+                            alert('Failed to send quote.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Failed to send quote.');
+                    });
+                } else {
+                    alert('Please select a tag first.');
+                }
             });
         });
-    });
-</script>
-
+    </script>
+</body>
 </html>
