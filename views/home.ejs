@@ -13,6 +13,10 @@
             
         </div>
         
+        <div class="email-title">
+            <h1 > <%= username %> </h1>
+            <h1> <%= email %></h1>
+        </div>
         <form action="/logout" method="POST">
             <div class="logout">
                 <button>Logout</button>
@@ -33,7 +37,6 @@
             <div class="card" id="card8">Happiness</div>
             <div class="card" id="card9">Wellness</div>
             <div class="card" id="card10">Science</div>
-            
         </div>
     </main>
     <footer>
@@ -44,7 +47,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const cards = document.querySelectorAll(".card");
-    
+
         cards.forEach(card => {
             card.addEventListener("click", function() {
                 // Remove the 'selected' class from all cards
@@ -53,13 +56,12 @@
                         otherCard.classList.remove("selected");
                     }
                 });
-    
+
                 // Toggle the 'selected' class for the clicked card
                 card.classList.toggle("selected");
             });
         });
     });
-    
 </script>
 
 </html>

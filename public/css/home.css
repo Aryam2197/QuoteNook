@@ -29,14 +29,28 @@ header {
     color: #f5deb3;
 }
 
+
+
+.email-title{
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%); /* Move the button up by half of its height to center it vertically */
+    left:10%;
+    font-size: 10px;
+    color: #424346;
+}
+
+.email-title h1{
+    margin: -4px;
+
+}
+
 .logout {
     position: absolute;
     top: 25%; /* Align the top of the button with the vertical center of the header container */
     right: 2%; /* Add some space from the right */
     transform: translateY(-50%); /* Move the button up by half of its height to center it vertically */
 }
-
-
 
 .logout button {
     background-color: #f06666;
@@ -76,7 +90,7 @@ main {
     background-color: #272931;
     border: 2px solid #424346;
     color: #9a9da4;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     margin: 15px;
     text-align: center;
@@ -92,10 +106,14 @@ main {
     transition: 0.2s ease-out;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 840px) {
     .card {
         flex-basis: calc(50% - 10px); /* Each card takes up 50% width with reduced margin */
         max-width: 200px; /* Reduced max-width */
+    }
+
+    .email-title{
+        display: none;
     }
 }
 

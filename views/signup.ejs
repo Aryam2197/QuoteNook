@@ -13,8 +13,9 @@
         </div>
         <div class="card">
             <form action="/register" method="POST">
-                <input type="text" name="username" placeholder="Username">
-                <input type="password" name="password" placeholder="Password">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required> <!-- Added email field -->
+                <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" class="btn">Sign Up</button>
                 <% if (messages && messages.length > 0) { %>
                     <div style="color: white;">
