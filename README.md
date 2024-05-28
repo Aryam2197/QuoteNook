@@ -21,8 +21,8 @@ QuoteNook is designed to be your go-to source for finding and saving your favori
 ## Features
 
 - Access to a wide variety of quotes from different authors and categories.
-- User-friendly interface for easy navigation and browsing.
-- Ability to save favorite quotes for future reference.
+- Users can subscribe to receive daily or weekly quotes via email based on their preferences.
+
 
 ## Getting Started
 
