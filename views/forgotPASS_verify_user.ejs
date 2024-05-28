@@ -12,10 +12,9 @@
             <h1>QuoteNook</h1>
         </div>
         <div class="card">
-            <form action="/login" method="POST">
+            <form action="/verify" method="POST">
                 <input type="text" placeholder="Username" name="username" required>
-                <input type="password" placeholder="Password" name="password" required>
-                <button type="submit" class="btn">LOGIN</button>
+                <button type="submit" class="btn">GET OTP</button>
                 <% if (messages && messages.length > 0) { %>
                     <div style="color: white;">
                         <% for (var i = 0; i < messages.length; i++) { %>
@@ -25,8 +24,7 @@
                 <% } %>
             </form>
         </div>
-        <p>Not a member? <a href="/register" class="signup-link">Sign Up</a></p>
-        <p><a href="/verify" class="signup-link">Forgot Password? </a></p>
+        <p><a href="login" class="signup-link">login </a></p>
     </div>
 </body>
 </html>
