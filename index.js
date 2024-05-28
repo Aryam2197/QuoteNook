@@ -45,9 +45,24 @@ app.get('/home', requireLogin, async (req, res) => {
 })
 
 
+
 app.get('/', (req, res) => {
     res.render('landing');
 })
+
+app.get('/verify', (req, res) => {
+    const messages = req.flash('userFailed');
+    res.render('forgotPASS_verify_user', { messages: messages });
+})
+
+app.get('/verify-otp', (req, res) => {
+    res.render('verify_otp', ); // Pass the message to the view
+});
+
+app.get('/reset-password', (req, res) => {
+    const userId = req.query.userId;
+    res.render('reset_password',{userId:userId}); 
+});
 
 app.get('/register', (req, res) => {
     const messages = req.flash('failed');
@@ -106,6 +121,99 @@ app.post('/login', async (req, res) => {
         res.render('login', { messages: req.flash('failed_login') });
     }
 })
+
+
+app.post('/verify', async (req, res) => {
+    const { username } = req.body;
+    const user = await User.findOne({ username });
+
+    if (!user) {
+        req.flash('userFailed', 'Username Not Found');
+        return res.render('forgotPASS_verify_user', { messages: req.flash('userFailed') });
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000); // Generate 6-digit OTP
+    const otpExpiration = new Date(Date.now() + 10 * 60 * 1000); // OTP expires in 10 minutes
+
+    // Store OTP and its expiration in the user document
+    user.otp = otp;
+    user.otpExpiration = otpExpiration;
+    await user.save();
+
+    // Send OTP via email
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: user.email,
+        subject: 'Password Reset OTP',
+        text: `Your OTP for password reset is: ${otp}`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+            return res.status(500).send('Error sending OTP');
+        }
+        console.log('Email sent: ' + info.response);
+        res.render('verify_otp');
+    });
+});
+
+
+// const requireLogin1 = (req, res, next) => {
+//     if (!req.session.user_id) {
+//         return res.redirect('login');
+//     }
+//     next();
+// }
+
+app.post('/verify-otp', async (req, res) => {
+    // const user1 = await User.findById(req.session.user_id);
+    const { otp } = req.body;
+    const user = await User.findOne({ otp }); // Find the user by OTP
+
+    if (!user || new Date() > user.otpExpiration) {
+        req.flash('failed', 'Invalid OTP or OTP expired');
+        return res.redirect('/verify-otp'); // Redirect back to the OTP verification page with an error message
+    }
+
+    // const userEmail = user.email;
+    // const maskedEmail = `${userEmail.substring(0, 3)}***${userEmail.substring(userEmail.length - 2)}`; // Mask the email address
+    // req.flash('OTPsend', `Check ${maskedEmail}`); // Set the flash message with masked email
+    res.redirect(`/reset-password?userId=${user._id}`); // Render a page with a form to reset password
+});
+
+
+
+app.post('/reset-password', async (req, res) => {
+    const { userId, newPassword } = req.body;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+        req.flash('failed', 'User not found');
+        return res.redirect('/verify-otp'); // Redirect to OTP verification page with an error message
+    }
+
+    // Update the user's password and remove OTP fields
+    user.password = await bcrypt.hash(newPassword, 12);
+    user.otp = undefined;
+    user.otpExpiration = undefined;
+    await user.save();
+
+    req.flash('success', 'Password successfully changed');
+    res.redirect('/login'); // Redirect to login page with success message
+});
+
+
 
 app.post('/logout', (req, res) => {
     req.session.destroy();
