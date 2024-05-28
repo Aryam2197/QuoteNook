@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+        .otp {
+            font-size: 20px;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, <%= username %>!</h1>
+        <p>Your OTP for password reset is: <strong class="otp"><%= otp %></strong></p>
+        <p>This OTP is valid for 10 minutes. Please use it to reset your password.</p>
+        <p>Thank you,</p>
+        <p>Your Company Name</p>
+        <p class="footer">If you did not request a password reset, please ignore this email or contact support.</p>
+    </div>
+</body>
+</html>

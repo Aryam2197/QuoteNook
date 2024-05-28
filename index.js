@@ -140,6 +140,15 @@ app.post('/verify', async (req, res) => {
     user.otpExpiration = otpExpiration;
     await user.save();
 
+    // Read the OTP email template file
+    const emailTemplatePath = path.join(__dirname, 'templates', 'otp_email.html');
+    const emailTemplate = fs.readFileSync(emailTemplatePath, 'utf8');
+
+    // Replace placeholders in the template with actual data
+    const formattedEmail = emailTemplate
+        .replace('<%= username %>', user.username)
+        .replace('<%= otp %>', otp);
+
     // Send OTP via email
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
@@ -153,7 +162,7 @@ app.post('/verify', async (req, res) => {
         from: process.env.EMAIL_USER,
         to: user.email,
         subject: 'Password Reset OTP',
-        text: `Your OTP for password reset is: ${otp}`
+        html: formattedEmail
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -165,6 +174,7 @@ app.post('/verify', async (req, res) => {
         res.render('verify_otp');
     });
 });
+
 
 
 // const requireLogin1 = (req, res, next) => {
