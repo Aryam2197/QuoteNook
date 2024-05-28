@@ -16,7 +16,7 @@ Welcome to QuoteNook, an inspirational quote generator that provides a vast coll
 
 ## About the Project
 
-QuoteNook is designed to be your go-to source for finding and saving your favorite quotes. Whether you need a motivational boost, some wisdom to ponder, or just want to explore the thoughts of great minds, QuoteNook has something for everyone.
+Random Quote Generator is a website where you can select the type of quote you prefer, and it will be delivered to your email on a weekly or daily basis.
 
 ## Features
 
