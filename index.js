@@ -163,6 +163,7 @@ app.post('/verify', async (req, res) => {
         to: user.email,
         subject: 'Password Reset OTP',
         html: formattedEmail
+
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -174,15 +175,6 @@ app.post('/verify', async (req, res) => {
         res.render('verify_otp');
     });
 });
-
-
-
-// const requireLogin1 = (req, res, next) => {
-//     if (!req.session.user_id) {
-//         return res.redirect('login');
-//     }
-//     next();
-// }
 
 app.post('/verify-otp', async (req, res) => {
     // const user1 = await User.findById(req.session.user_id);
