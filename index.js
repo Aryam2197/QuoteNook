@@ -17,7 +17,10 @@ connectDB();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -36,9 +39,14 @@ const requireLogin = (req, res, next) => {
     next();
 }
 
-app.get('/', requireLogin, async (req, res) => {
+app.get('/home', requireLogin, async (req, res) => {
     const user = await User.findById(req.session.user_id);
     res.render('home', { username: user.username, email: user.email });
+})
+
+
+app.get('/', (req, res) => {
+    res.render('landing');
 })
 
 app.get('/register', (req, res) => {
@@ -51,9 +59,9 @@ app.get('/login', (req, res) => {
     res.render('login', { messages: messages });
 })
 
-app.get('/home2', requireLogin, (req, res) => {
-    res.send("home2");
-})
+// app.get('/home2', requireLogin, (req, res) => {
+//     res.send("home2");
+// })
 
 app.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
@@ -92,7 +100,7 @@ app.post('/login', async (req, res) => {
 
     if (result) {
         req.session.user_id = user._id;
-        res.redirect('/');
+        res.redirect('/home');
     } else {
         req.flash('failed_login', 'Username or Password Incorrect');
         res.render('login', { messages: req.flash('failed_login') });
