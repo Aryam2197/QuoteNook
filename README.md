@@ -2,18 +2,6 @@
 
 Welcome to QuoteNook, an inspirational quote generator that provides a vast collection of quotes to inspire, motivate, and impart wisdom.
 
-## Table of Contents
-
-- [About the Project](#about-the-project)
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
 ## About the Project
 
 Random Quote Generator is a website where you can select the type of quote you prefer, and it will be delivered to your email on a weekly or daily basis.
